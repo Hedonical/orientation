@@ -1,0 +1,137 @@
+---
+title-block-banner: true
+title: "An Intro to the Data Science Tools"
+subtitle: "To Ellinor"
+author: "Phillip Post"
+date: "04/21/2026"
+toc: True
+toc-expand: 1
+format: live-html
+---
+
+{{< include ./_extensions/r-wasm/live/_knitr.qmd >}}
+
+::: callout-important
+## No Artificial Intelligence (AI) was used to produce this. All errors are attributable to Phillip.
+:::
+
+# **Why does this exist?**
+
+The goal of this piece is to allow the reader to triage what programming language, setup, tools, and processes would be best for them to answer novel questions. There are a bevy of excellent, free resources online that a person, no matter their education or background, can use to match the leading researchers and institutions. Paradoxically the vast number of these resources can lead to an information overload and paralysis, with a new or experienced researcher unsure of what path to take since they are so overwhelmed with the seemingly infinite possibilities.
+
+While admittedly adding to this noise, this resource offers the resources that I have found the most compelling in my research career, which means they may or may not be useful for yourself. Academia is a field guilty of arbitrary gatekeeping and litmus tests against someone who simply has the curiosity to ask why, but this does a fundamental disservice to us all. Compelling research does not result from an academic title, prestigious institution, or specific place, it comes from someone who has the willingness to learn, share their unique perspectives, and be willing to have an equal review and conversation with their peers.
+
+Since I equally love R & Python, I will discuss everything in this article through the process of doing things in either language. Even if you only use one, which you probably will, it doesn't hurt to be familiar with what else is out there.
+
+All of the code cells in this notebook are editable and customizable, so please feel free to play around with them! You can execute code by clicking the `Run Code` button and can always undo your changes by clicking the `Start Over` button.
+
+For example a python cell:
+
+```{pyodide}
+# create a variable named x that stores the integer value 2
+x = 2
+
+# add x to 3 but don't assign the value to any location, implicitly printing it
+x + 3
+```
+
+And now an R cell:
+
+```{webr}
+# create a variable named x that stores the integer value 2
+x = 2
+
+# add x to 3 but don't assign the value to any location, implicitly printing it
+x + 3
+```
+
+# **The Data Science Workflow**
+
+In my mind, the general tasks a data scientist performs from the inception to completion of a research project is as follows,
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Data Acquisition 🔍                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | Data Processing 🚧                                                                                                                                                                                                                                                                                          | Data Storytelling 🎥                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
++:================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================:+:===========================================================================================================================================================================================================================================================================================================:+:=========================================================================================================================================================================================================================================================================================================================================================================================================================================================================================:+
+| This the task of finding, scraping (if the data is not already structured), and loading a dataset. There are plenty of publicly accessible datasets you can export as a `csv` or other data type and load directly, but this data is commonly already analyzed or published as it's the easiest to access. However, this in no way means the data is less relevant or valuable, it just means the author will have to combine it with more datasets or use a novel `Data Storytelling` method to add to contemporary literature. | Data processing or data wrangling is the process of cleaning, manipulating, and fundamentally changing the data you have from `Data Acquisition`.                                                                                                                                                           | Whereas `Data Acquisition` and `Data Processing` would be the methods of a typical research paper, `Data Storytelling` is your conclusion and results. It is your opportunity to share with the world the magnum opus of your work, learning, and knowledge. Whether this takes the form of timelines, figures, or tables (usually a combination of all three), they should all contribute to a compelling narrative that anyone could follow, even if they are not a peer in your field. |
+|                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |                                                                                                                                                                                                                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| If you already have a dataset that you want to analyze you only have to pay attention to the data loading part of this section.                                                                                                                                                                                                                                                                                                                                                                                                  | This could mean something as simple summing a column of cocoa bean costs to find the total amount, or something as complex having three LLMs collectively read an unstructured text and vote on whether they believe the sentiment of the text is negative, neutral, or positive. The world is your oyster. | Chefs pour their soul into a meal, artists their art piece, and a data scientist into their figures.                                                                                                                                                                                                                                                                                                                                                                                      |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+# **R 🟦 vs Python 🐍**
+
+R and Python shouldn't be thought of as competitors but rather complimentary programming languages that have their own strengths and weaknesses. I have had many projects where I use Python and R. For example, I may use Python to pull and download datasets from a website, but then use R for the data processing and visuals.
+
+While they have their own pros and cons, you should use the language that makes the most sense for you and critically the one that **you can hold yourself accountable to consistently use.** The best programming language at the end of the day is the language you can program in. This section will run through the most fundamental differences in syntax/workflows between these two languages.
+
+But at a high level the pros and cons of each is
+
+## Loading Packages 🕛
+
+Note that this does not involved the download process, which is covered in @sec-setup.
+
+### For Python
+
+For Python you use import to load a package:
+
+```{pyodide}
+import os
+```
+
+Python comes with many helpful packages like `os` preinstalled within the language itself, so you don't have to separately install them as an external package.
+
+In Python, the `.` operator allows you to load dependent functions, scripts, or objects located within a package, which is basically just a python file. So if I want to access the very useful `join` function in the `os` package to join together a file path, I can do so:
+
+```{pyodide}
+# note, you need os loaded to access it so to run this cell, you have to have run the prior import os cell
+os.path.join("random", "path", "to", "file.txt")
+```
+
+But its a pain to call `os.path.join` every single time so instead we can give it another shorthand name using the `from` and `as` arguments:
+
+```{pyodide}
+from os.path import join as here
+
+here("random", "path", "to", "file.txt")
+```
+
+### For R
+
+For R you use the `library` function to load a package. Unlike Python where you have to be very specific and explicitly load a function or use `.` to access a specific function within a package, R loads everything within a package at once. Because of that, all of R's default packages and their functions are already loaded and we can reference them directly:
+
+```{webr}
+file.path("random", "path", "to", "file.txt")
+```
+
+Notice I didn't use the `library` function? Since file.path is a default R function, we only have to load external packages, which will be covered in @sec-setup.
+
+## Fundamental Data Types 📁
+
+### For Python & R
+
+### For Python
+
+### For R
+
+# **Data Acquisition 🔍**
+
+# **Data Processing 🚧**
+
+# **Data Storytelling 🎥**
+
+# **Computer 💻 or Cloud ☁️ Setup** {#sec-setup}
+
+Before reading this section, please keep in mind that as with the rest of this article, no one approach is outright superior or better. Try and use the one that proves to have the least amount of friction for your brain and unique workflows.
+
+The most fundamental difference between programming in R versus Python is the environment setup process, with Python being harder than R to setup but has more community built capabilities. Every programming language revolves around the interpreter (i.e. the low level code that parses the text we call Python or R and translates it into machine level code), but high level languages, meaning they are abstracted one or two times away from machine code, like Python and R
+
+## Computer 💻
+
+### For Python
+
+### For R
+
+## Cloud ☁️
+
+### For Python
+
+### For R
