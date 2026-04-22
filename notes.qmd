@@ -19,9 +19,9 @@ format: live-html
 
 The goal of this piece is to allow the reader to triage what programming language, setup, tools, and processes would be best for them to answer novel questions. There are a bevy of excellent, free resources online that a person, no matter their education or background, can use to match the leading researchers and institutions. Paradoxically the vast number of these resources can lead to an information overload and paralysis, with a new or experienced researcher unsure of what path to take since they are so overwhelmed with the seemingly infinite possibilities.
 
-While admittedly adding to this noise, this resource offers the resources that I have found the most compelling in my research career, which means they may or may not be useful for yourself. Academia is a field guilty of arbitrary gatekeeping and litmus tests against someone who simply has the curiosity to ask why, but this does a fundamental disservice to us all. Compelling research does not result from an academic title, prestigious institution, or specific place, it comes from someone who has the willingness to learn, share their unique perspectives, and be willing to have an equal review and conversation with their peers.
+While admittedly adding to this noise, this guide offers the resources that I have found the most compelling in my research career, which means they may or may not be useful for yourself. Academia is a field guilty of arbitrary gatekeeping and litmus tests against someone who simply has the curiosity to ask why, but this does a fundamental disservice to us all. Compelling research does not result from an academic title, prestigious institution, or specific place, it comes from someone who has the willingness to learn, share their unique perspectives, and have an equal review and conversation with their peers.
 
-Since I equally love R & Python, I will discuss everything in this article through the process of doing things in either language. Even if you only use one, which you probably will, it doesn't hurt to be familiar with what else is out there.
+Since I equally love R & Python, I will discuss everything in this article through the process of doing things in either language. Even if you only use one, *which you probably will*, it doesn't hurt to be familiar with what else is out there.
 
 All of the code cells in this notebook are editable and customizable, so please feel free to play around with them! You can execute code by clicking the `Run Code` button and can always undo your changes by clicking the `Start Over` button.
 
@@ -102,36 +102,343 @@ For R you use the `library` function to load a package. Unlike Python where you 
 file.path("random", "path", "to", "file.txt")
 ```
 
-Notice I didn't use the `library` function? Since file.path is a default R function, we only have to load external packages, which will be covered in @sec-setup.
+Notice I didn't use the `library` function? This is because file.path is a default R function, and we only have to load external packages, which will be covered in @sec-setup.
 
 ## Fundamental Data Types 📁
 
-### For Python & R
+### Decimal values
 
-### For Python
+Floats in Python
 
-### For R
+```{pyodide}
+x = 3.1
+type(x)
+```
 
-# **Data Acquisition 🔍**
+numeric/double in R
+
+```{webr}
+x = 3.1
+class(x)
+```
+
+### Integer Values
+
+Python has a separate class for integers
+
+```{pyodide}
+x = 3
+type(x)
+```
+
+R considers integers and floats to be numeric
+
+```{webr}
+x = 3
+class(x)
+```
+
+### Text data
+
+String in python
+
+```{pyodide}
+x = "bean"
+type(x)
+```
+
+Character in R
+
+```{webr}
+x = "bean"
+class(x)
+```
+
+### Vectors vs Lists
+
+Python lists allow any object of any type, including more lists for added dimensions
+
+```{pyodide}
+x = [5, 3.1, "bean", True]
+type(x)
+```
+
+R uses vectors which only allow a single data type and are one dimensional, notice how a vector is the same type as the data it contains
+
+```{webr}
+x = c(1,2,3,4)
+class(x)
+```
+
+### Booleans
+
+Bool in python
+
+```{pyodide}
+x = True
+type(x)
+```
+
+Logical in R
+
+```{webr}
+x = TRUE
+class(x)
+```
+
+```{webr}
+x = T
+class(x)
+```
+
+### if else
+
+if else in Python, uses tab spacing to indicate what is within what
+
+```{pyodide}
+if True:
+    print("well this is surprising")
+else:
+    print(":O")
+
+```
+
+But R uses parantheses and curly brackets with no regard for spacing
+
+```{webr}
+    x = T
+if (x){
+    print("very surprising")
+} else{
+print(":O")
+}
+```
+
+### and
+
+Python uses and
+
+```{pyodide}
+if True and False:
+    print("well this is surprising")
+else:
+    print(":O")
+
+```
+
+R uses &
+
+```{webr}
+    x = T
+y = F
+if (x & y){
+    print("very surprising")
+} else{
+print(":O")
+}
+
+```
+
+### or
+
+Python uses or
+
+```{pyodide}
+if True or False:
+    print("well this is surprising")
+else:
+    print(":O")
+
+```
+
+R uses \|
+
+```{webr}
+    x = T
+y = F
+if (x | y){
+    print("very surprising")
+} else{
+print(":O")
+}
+
+```
+
+### not
+
+Python uses not
+
+```{pyodide}
+if not True:
+    print("well this is surprising")
+else:
+    print(":O")
+
+```
+
+R uses !
+
+```{webr}
+    x = T
+if (!x){
+    print("very surprising")
+} else{
+print(":O")
+}
+
+```
+
+### What about dataframes, datatables, etc?
+
+Python doesn't have a native way to handle this data but we will discuss packages in @sec-acq/
+
+R does have a native `data.frame` object but it isn't amazing without some additional packages as well.
+
+# **Data Acquisition 🔍** {#sec-acq}
+
+This is the workflow where Python is far superior. Most public APIs have a python native version, making data acquisition and analysis a breeze.
+
+On this note some notable Python packages to be aware of are:
+
+## Requests
+
+<https://pypi.org/project/requests/>
+
+Allows you to make HTTP requests
+
+## Polars
+
+<https://pypi.org/project/polars/>
+
+Can read online CSV or JSON files directly as a dataframe you can manipulate.
 
 # **Data Processing 🚧**
 
+This is where Python and R are evenly matched in terms of packages and capabilities. Although, polars is much faster and efficient than dplyr.
+
+## For Python
+
+### Polars
+
+<https://pypi.org/project/polars/>
+
+The best package for processing large datasets from my experience.
+
+### statsmodels
+
+<https://pypi.org/project/statsmodels/>
+
+Widely used package for statistical models and tests, but Polars will cover most of your needs.
+
+## For R
+
+### tidyverse - dplyr
+
+<https://dplyr.tidyverse.org/>
+
+The tidyverse is one mega package within R that contains almost everything you need to perform analysis start to finish, specifically for manipulating datasets the dplyr package is used. R also is nice because it has statistical models like linear regressions built within it.
+
 # **Data Storytelling 🎥**
+
+Again, both Python and R are evenly matched in terms of packages and capabilities
+
+## For Python
+
+### plotly
+
+<https://plotly.com/python/>
+
+Nice interactive plots and maps, can also be saved as static images.
+
+### plotnine
+
+<https://plotnine.org/>
+
+Great static plotting library that uses the same syntax as R's ggplot library.
+
+## For R
+
+### ggplot2
+
+<https://ggplot2.tidyverse.org/>
+
+One of the most famous plotting packages with options to make almost any graph imaginable with lots of customizability. Note that this package is being ported to native Python through the plotnine package.
 
 # **Computer 💻 or Cloud ☁️ Setup** {#sec-setup}
 
 Before reading this section, please keep in mind that as with the rest of this article, no one approach is outright superior or better. Try and use the one that proves to have the least amount of friction for your brain and unique workflows.
 
-The most fundamental difference between programming in R versus Python is the environment setup process, with Python being harder than R to setup but has more community built capabilities. Every programming language revolves around the interpreter (i.e. the low level code that parses the text we call Python or R and translates it into machine level code), but high level languages, meaning they are abstracted one or two times away from machine code, like Python and R
+The most fundamental difference between programming in R versus Python is the environment setup process, with Python being harder than R to setup but has more community built capabilities. Every programming language revolves around the interpreter (i.e. the low level code that parses the text we call Python or R and translates it into machine level code).
+
+One more thing to keep in mind is the unsung hero of programming is good folder management, meaning you create folders with good but brief names, keep files in their proper folders, and
 
 ## Computer 💻
 
+The benefit of going down this route is that you will be able to theoretically run any package locally without an internet connection, unless the code itself requires one. The major downside of this route is you have to maintain your environments and keep things up to date. Also keep in mind code that works on your machine will probably not automatically work on someone else's, but there are ways to standardize your code to run on any computer (just requires more work).
+
+Note this requires use of your terminal, which is your way of directly interacting with your computer's operating system.
+
+Also note that you are at risk of losing your work if your computer dies, so make sure to do routine backups with an online data storage service. My recommendation is the dedicated free code storage tool named Github: <https://docs.github.com/en/get-started/start-your-journey/about-github-and-git>
+
+### For Python & R
+
+You need an interactive developer environment (IDE) to efficiently interact with these languages. My personal recommendation is Positron since it has lots of quality life features for performing data analysis.
+
+Positron download: <https://positron.posit.co/download.html>
+
+For interactive
+
 ### For Python
 
+The hardest part of programming in Python is package version control and management. Thankfully there is software that does this for us!
+
+Install Anaconda for your computer: <https://www.anaconda.com/download/success?reg=skipped>
+
+After you install and successfully set this up, you should be able to run the following commands **in your terminal** after restarting it:
+
+To check that Anaconda is installed `conda version`
+
+Create an environment, think of this as a self contained version of python and packages that exist for a specific task or project. You can use one environment for everything, but this will typically lead to bugs and issues overtime. `conda create -n example`
+
+And then to enter this environment you would run `conda activate example`
+
+You should see the environment name in your terminal
+
+And now that we are within the environment, **we can install packages** `pip install polars`
+
+And if it says pip is not installed you can run `anaconda install pip`
+
+Lastly, if you want to create an interactive python notebook, create a file in your IDE with the extension .ipynb, this is the same file type that google collab uses.
+
 ### For R
+
+You can also use Anaconda to ensure you do not have package conflicts but it is less pressing than Python. My personal recommendation is to at least use the pacman package in R since this streamlines package updates and install.
+
+```{code}
+# install pacman if it is not already installed
+if (!"pacman" %in% installed.packages()){
+install.packages("pacman")
+}
+
+# load pacman
+library(pacman)
+
+# load every other package with pacman, which will handle install and loading
+pacman::p_load("here")
+```
+
+*If you do not use Anaconda*, you will have to install the R language here: <https://cran.r-project.org/bin/windows/base/>
 
 ## Cloud ☁️
 
+For this, I personally recommend google collab, which allows you to easily share and store your code. Further, being in the cloud means your data is always saved. However, storage in google collab is not persistent so you will have to link your google drive for persistent storage.
+
 ### For Python
 
+Example notebook for google collab in python: <https://colab.research.google.com/github/cs231n/cs231n.github.io/blob/master/python-colab.ipynb>
+
+Note to install a python package in google collab you run `!pip install polars` in one of the cells
+
 ### For R
+
+Example notebook for google collab in R: <https://colab.research.google.com/github/alvinntnu/python-notes/blob/master/python-basics/google-colab-r.ipynb>

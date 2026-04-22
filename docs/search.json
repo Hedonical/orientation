@@ -1,0 +1,79 @@
+[
+  {
+    "objectID": "notes.html",
+    "href": "notes.html",
+    "title": "An Intro to the Data Science Tools",
+    "section": "",
+    "text": "ImportantNo Artificial Intelligence (AI) was used to produce this. All errors are attributable to Phillip."
+  },
+  {
+    "objectID": "notes.html#loading-packages",
+    "href": "notes.html#loading-packages",
+    "title": "An Intro to the Data Science Tools",
+    "section": "Loading Packages 🕛",
+    "text": "Loading Packages 🕛\nNote that this does not involved the download process, which is covered in Section 7.\n\nFor Python\nFor Python you use import to load a package:\n\n\n\n\n\n\n\n\nPython comes with many helpful packages like os preinstalled within the language itself, so you don’t have to separately install them as an external package.\nIn Python, the . operator allows you to load dependent functions, scripts, or objects located within a package, which is basically just a python file. So if I want to access the very useful join function in the os package to join together a file path, I can do so:\n\n\n\n\n\n\n\n\nBut its a pain to call os.path.join every single time so instead we can give it another shorthand name using the from and as arguments:\n\n\n\n\n\n\n\n\n\n\nFor R\nFor R you use the library function to load a package. Unlike Python where you have to be very specific and explicitly load a function or use . to access a specific function within a package, R loads everything within a package at once. Because of that, all of R’s default packages and their functions are already loaded and we can reference them directly:\n\n\n\n\n\n\n\n\nNotice I didn’t use the library function? This is because file.path is a default R function, and we only have to load external packages, which will be covered in Section 7."
+  },
+  {
+    "objectID": "notes.html#fundamental-data-types",
+    "href": "notes.html#fundamental-data-types",
+    "title": "An Intro to the Data Science Tools",
+    "section": "Fundamental Data Types 📁",
+    "text": "Fundamental Data Types 📁\n\nDecimal values\nFloats in Python\n\n\n\n\n\n\n\n\nnumeric/double in R\n\n\n\n\n\n\n\n\n\n\nInteger Values\nPython has a separate class for integers\n\n\n\n\n\n\n\n\nR considers integers and floats to be numeric\n\n\n\n\n\n\n\n\n\n\nText data\nString in python\n\n\n\n\n\n\n\n\nCharacter in R\n\n\n\n\n\n\n\n\n\n\nVectors vs Lists\nPython lists allow any object of any type, including more lists for added dimensions\n\n\n\n\n\n\n\n\nR uses vectors which only allow a single data type and are one dimensional, notice how a vector is the same type as the data it contains\n\n\n\n\n\n\n\n\n\n\nBooleans\nBool in python\n\n\n\n\n\n\n\n\nLogical in R\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nif else\nif else in Python, uses tab spacing to indicate what is within what\n\n\n\n\n\n\n\n\nBut R uses parantheses and curly brackets with no regard for spacing\n\n\n\n\n\n\n\n\n\n\nand\nPython uses and\n\n\n\n\n\n\n\n\nR uses &\n\n\n\n\n\n\n\n\n\n\nor\nPython uses or\n\n\n\n\n\n\n\n\nR uses |\n\n\n\n\n\n\n\n\n\n\nnot\nPython uses not\n\n\n\n\n\n\n\n\nR uses !\n\n\n\n\n\n\n\n\n\n\nWhat about dataframes, datatables, etc?\nPython doesn’t have a native way to handle this data but we will discuss packages in Section 4/\nR does have a native data.frame object but it isn’t amazing without some additional packages as well."
+  },
+  {
+    "objectID": "notes.html#requests",
+    "href": "notes.html#requests",
+    "title": "An Intro to the Data Science Tools",
+    "section": "Requests",
+    "text": "Requests\nhttps://pypi.org/project/requests/\nAllows you to make HTTP requests"
+  },
+  {
+    "objectID": "notes.html#polars",
+    "href": "notes.html#polars",
+    "title": "An Intro to the Data Science Tools",
+    "section": "Polars",
+    "text": "Polars\nhttps://pypi.org/project/polars/\nCan read online CSV or JSON files directly as a dataframe you can manipulate."
+  },
+  {
+    "objectID": "notes.html#for-python-1",
+    "href": "notes.html#for-python-1",
+    "title": "An Intro to the Data Science Tools",
+    "section": "For Python",
+    "text": "For Python\n\nPolars\nhttps://pypi.org/project/polars/\nThe best package for processing large datasets from my experience.\n\n\nstatsmodels\nhttps://pypi.org/project/statsmodels/\nWidely used package for statistical models and tests, but Polars will cover most of your needs."
+  },
+  {
+    "objectID": "notes.html#for-r-1",
+    "href": "notes.html#for-r-1",
+    "title": "An Intro to the Data Science Tools",
+    "section": "For R",
+    "text": "For R\n\ntidyverse - dplyr\nhttps://dplyr.tidyverse.org/\nThe tidyverse is one mega package within R that contains almost everything you need to perform analysis start to finish, specifically for manipulating datasets the dplyr package is used. R also is nice because it has statistical models like linear regressions built within it."
+  },
+  {
+    "objectID": "notes.html#for-python-2",
+    "href": "notes.html#for-python-2",
+    "title": "An Intro to the Data Science Tools",
+    "section": "For Python",
+    "text": "For Python\n\nplotly\nhttps://plotly.com/python/\nNice interactive plots and maps, can also be saved as static images.\n\n\nplotnine\nhttps://plotnine.org/\nGreat static plotting library that uses the same syntax as R’s ggplot library."
+  },
+  {
+    "objectID": "notes.html#for-r-2",
+    "href": "notes.html#for-r-2",
+    "title": "An Intro to the Data Science Tools",
+    "section": "For R",
+    "text": "For R\n\nggplot2\nhttps://ggplot2.tidyverse.org/\nOne of the most famous plotting packages with options to make almost any graph imaginable with lots of customizability. Note that this package is being ported to native Python through the plotnine package."
+  },
+  {
+    "objectID": "notes.html#computer",
+    "href": "notes.html#computer",
+    "title": "An Intro to the Data Science Tools",
+    "section": "Computer 💻",
+    "text": "Computer 💻\nThe benefit of going down this route is that you will be able to theoretically run any package locally without an internet connection, unless the code itself requires one. The major downside of this route is you have to maintain your environments and keep things up to date. Also keep in mind code that works on your machine will probably not automatically work on someone else’s, but there are ways to standardize your code to run on any computer (just requires more work).\nNote this requires use of your terminal, which is your way of directly interacting with your computer’s operating system.\nAlso note that you are at risk of losing your work if your computer dies, so make sure to do routine backups with an online data storage service. My recommendation is the dedicated free code storage tool named Github: https://docs.github.com/en/get-started/start-your-journey/about-github-and-git\n\nFor Python & R\nYou need an interactive developer environment (IDE) to efficiently interact with these languages. My personal recommendation is Positron since it has lots of quality life features for performing data analysis.\nPositron download: https://positron.posit.co/download.html\nFor interactive\n\n\nFor Python\nThe hardest part of programming in Python is package version control and management. Thankfully there is software that does this for us!\nInstall Anaconda for your computer: https://www.anaconda.com/download/success?reg=skipped\nAfter you install and successfully set this up, you should be able to run the following commands in your terminal after restarting it:\nTo check that Anaconda is installed conda version\nCreate an environment, think of this as a self contained version of python and packages that exist for a specific task or project. You can use one environment for everything, but this will typically lead to bugs and issues overtime. conda create -n example\nAnd then to enter this environment you would run conda activate example\nYou should see the environment name in your terminal\nAnd now that we are within the environment, we can install packages pip install polars\nAnd if it says pip is not installed you can run anaconda install pip\nLastly, if you want to create an interactive python notebook, create a file in your IDE with the extension .ipynb, this is the same file type that google collab uses.\n\n\nFor R\nYou can also use Anaconda to ensure you do not have package conflicts but it is less pressing than Python. My personal recommendation is to at least use the pacman package in R since this streamlines package updates and install.\n\n# install pacman if it is not already installed\nif (!\"pacman\" %in% installed.packages()){\ninstall.packages(\"pacman\")\n}\n\n# load pacman\nlibrary(pacman)\n\n# load every other package with pacman, which will handle install and loading\npacman::p_load(\"here\")\n\nIf you do not use Anaconda, you will have to install the R language here: https://cran.r-project.org/bin/windows/base/"
+  },
+  {
+    "objectID": "notes.html#cloud",
+    "href": "notes.html#cloud",
+    "title": "An Intro to the Data Science Tools",
+    "section": "Cloud ☁️",
+    "text": "Cloud ☁️\nFor this, I personally recommend google collab, which allows you to easily share and store your code. Further, being in the cloud means your data is always saved. However, storage in google collab is not persistent so you will have to link your google drive for persistent storage.\n\nFor Python\nExample notebook for google collab in python: https://colab.research.google.com/github/cs231n/cs231n.github.io/blob/master/python-colab.ipynb\nNote to install a python package in google collab you run !pip install polars in one of the cells\n\n\nFor R\nExample notebook for google collab in R: https://colab.research.google.com/github/alvinntnu/python-notes/blob/master/python-basics/google-colab-r.ipynb"
+  }
+]
