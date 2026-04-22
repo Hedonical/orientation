@@ -370,7 +370,7 @@ Before reading this section, please keep in mind that as with the rest of this a
 
 The most fundamental difference between programming in R versus Python is the environment setup process, with Python being harder than R to setup but has more community built capabilities. Every programming language revolves around the interpreter (i.e. the low level code that parses the text we call Python or R and translates it into machine level code).
 
-One more thing to keep in mind is the unsung hero of programming is good folder management, meaning you create folders with good but brief names, keep files in their proper folders, and
+One more thing to keep in mind is the unsung hero of programming is good folder management, meaning you create folders with good but brief names, keep files in their proper folders, and documenting things so future you or a colleague can understand your choices.
 
 ## Computer 💻
 
@@ -386,7 +386,7 @@ You need an interactive developer environment (IDE) to efficiently interact with
 
 Positron download: <https://positron.posit.co/download.html>
 
-For interactive
+For interactive python programming you can use jupyter notebooks, which have the ipynb file extension. Marimo and Quarto provide good alternatives as well.
 
 ### For Python
 
